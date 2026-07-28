@@ -19,7 +19,6 @@ if (aperture) {
   }
 }
 
-// --- Nav : effet au scroll ---
 const nav = document.getElementById('siteNav');
 const isHome = document.body.classList.contains('is-home');
 
@@ -72,16 +71,24 @@ document.querySelectorAll('.faq-item').forEach(item => {
   });
 });
 
-// --- Formulaire de contact (page Contact) ---
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('button[type="submit"]');
-  const original = btn.textContent;
-  btn.textContent = 'Message envoyé ✓';
-  btn.style.background = '#16a34a';
-  setTimeout(() => {
-    btn.textContent = original;
-    btn.style.background = '';
-    e.target.reset();
-  }, 2500);
-}
+
+
+const form = document.getElementById("contact-form");
+
+form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    emailjs.sendForm(
+        "service_hbyjrel",
+        "template_p62e0p7",
+        this
+    )
+    .then(function () {
+        alert("Votre message a bien été envoyé !");
+        form.reset();
+    })
+    .catch(function (error) {
+        console.error(error);
+        alert("Une erreur est survenue.");
+    });
+});
