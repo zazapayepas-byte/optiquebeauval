@@ -70,23 +70,3 @@ document.querySelectorAll('.faq-item').forEach(item => {
     }
   });
 });
-
-const form = document.getElementById("contact-form");
-
-form.addEventListener("submit", function(e){
-    e.preventDefault();
-
-    emailjs.sendForm(
-        "service_hbyjrel",
-        "template_p62e0p7",
-        this
-    )
-    .then(() => {
-        alert("Votre message a bien été envoyé !");
-        form.reset();
-    })
-    .catch((err) => {
-        console.log(err);
-        alert(JSON.stringify(err));
-    });
-});
