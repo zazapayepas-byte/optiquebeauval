@@ -71,11 +71,9 @@ document.querySelectorAll('.faq-item').forEach(item => {
   });
 });
 
-
-
 const form = document.getElementById("contact-form");
 
-form.addEventListener("submit", function (e) {
+form.addEventListener("submit", function(e){
     e.preventDefault();
 
     emailjs.sendForm(
@@ -83,12 +81,12 @@ form.addEventListener("submit", function (e) {
         "template_p62e0p7",
         this
     )
-    .then(function () {
+    .then(() => {
         alert("Votre message a bien été envoyé !");
         form.reset();
     })
-    .catch(function (error) {
-        console.error(error);
-        alert("Une erreur est survenue.");
+    .catch((err) => {
+        console.log(err);
+        alert(JSON.stringify(err));
     });
 });
